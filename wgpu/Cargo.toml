@@ -27,6 +27,7 @@ targets = [
 ignored = ["cfg_aliases"]
 
 [lib]
+crate-type = ["lib", "dylib"]
 
 [features]
 default = [

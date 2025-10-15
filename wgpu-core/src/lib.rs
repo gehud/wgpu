@@ -6,7 +6,6 @@
 #![doc = document_features::document_features!()]
 //!
 
-#![no_std]
 // When we have no backends, we end up with a lot of dead or otherwise unreachable code.
 #![cfg_attr(
     all(

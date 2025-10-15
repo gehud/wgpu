@@ -67,7 +67,7 @@ impl<'a> From<&'a str> for PathLikeRef<'a> {
 /// Functions which accept a `PathBuf` should prefer to use `impl PathLike`
 /// or `impl Into<PathLikeOwned>`.
 #[derive(Clone, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct PathLikeOwned(<path_like_impls::PathInner as alloc::borrow::ToOwned>::Owned);
+pub struct PathLikeOwned(<path_like_impls::PathInner as ::alloc::borrow::ToOwned>::Owned);
 
 impl fmt::Debug for PathLikeOwned {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

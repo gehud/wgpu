@@ -98,7 +98,6 @@ void main() {
         clippy::todo
     )
 )]
-#![no_std]
 
 #[cfg(std)]
 extern crate std;

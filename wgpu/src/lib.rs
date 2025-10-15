@@ -14,7 +14,6 @@
 //! - **`naga`** ---- Enabled when any non-wgsl shader input is enabled.
 //!
 
-#![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg, doc_auto_cfg))]
 #![doc(html_logo_url = "https://raw.githubusercontent.com/gfx-rs/wgpu/trunk/logo.png")]
 #![warn(

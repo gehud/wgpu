@@ -73,7 +73,7 @@ impl ComputeCommand {
     pub fn resolve_compute_command_ids(
         hub: &crate::hub::Hub,
         commands: &[ComputeCommand],
-    ) -> Result<alloc::vec::Vec<ArcComputeCommand>, super::ComputePassError> {
+    ) -> Result<::alloc::vec::Vec<ArcComputeCommand>, super::ComputePassError> {
         use super::{ComputePassError, PassErrorScope};
         use alloc::vec::Vec;
 

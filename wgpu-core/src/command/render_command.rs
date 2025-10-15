@@ -127,7 +127,7 @@ impl RenderCommand {
     pub fn resolve_render_command_ids(
         hub: &crate::hub::Hub,
         commands: &[RenderCommand],
-    ) -> Result<alloc::vec::Vec<ArcRenderCommand>, super::RenderPassError> {
+    ) -> Result<::alloc::vec::Vec<ArcRenderCommand>, super::RenderPassError> {
         use super::{DrawKind, PassErrorScope, RenderPassError};
         use alloc::vec::Vec;
 

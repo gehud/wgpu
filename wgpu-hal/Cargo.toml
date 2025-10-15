@@ -40,6 +40,7 @@ unexpected_cfgs = { level = "warn", check-cfg = [
 ] }
 
 [lib]
+crate-type = ["lib", "dylib"]
 
 [features]
 

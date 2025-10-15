@@ -124,7 +124,7 @@ pub enum ExpressionError {
     #[error("Sample level (gradient) of {1:?} doesn't match the image dimension {0:?}")]
     InvalidSampleLevelGradientType(crate::ImageDimension, Handle<crate::Expression>),
     #[error("Clamping sample coordinate to edge is not supported with {0}")]
-    InvalidSampleClampCoordinateToEdge(alloc::string::String),
+    InvalidSampleClampCoordinateToEdge(::alloc::string::String),
     #[error("Unable to cast")]
     InvalidCastArgument,
     #[error("Invalid argument count for {0:?}")]

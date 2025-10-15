@@ -7,7 +7,6 @@
     clippy::match_like_matches_macro,
 )]
 #![warn(clippy::ptr_as_ptr, missing_docs, unsafe_op_in_unsafe_fn)]
-#![no_std]
 
 #[cfg(feature = "std")]
 extern crate std;

@@ -62,7 +62,7 @@ impl fmt::Display for ShaderError<crate::WithSpan<crate::valid::ValidationError>
 
 cfg_if::cfg_if! {
     if #[cfg(feature = "termcolor")] {
-        type DiagnosticBufferInner = codespan_reporting::term::termcolor::NoColor<alloc::vec::Vec<u8>>;
+        type DiagnosticBufferInner = codespan_reporting::term::termcolor::NoColor<::alloc::vec::Vec<u8>>;
         pub(crate) use codespan_reporting::term::termcolor::WriteColor as _ErrorWrite;
     } else if #[cfg(feature = "stderr")] {
         type DiagnosticBufferInner = alloc::vec::Vec<u8>;
@@ -98,7 +98,7 @@ impl DiagnosticBuffer {
     pub fn new() -> Self {
         cfg_if::cfg_if! {
             if #[cfg(feature = "termcolor")] {
-                let inner = codespan_reporting::term::termcolor::NoColor::new(alloc::vec::Vec::new());
+                let inner = codespan_reporting::term::termcolor::NoColor::new(::alloc::vec::Vec::new());
             } else if #[cfg(feature = "stderr")] {
                 let inner = alloc::vec::Vec::new();
             } else {

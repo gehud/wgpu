@@ -148,7 +148,7 @@ impl<I: Copy + Ord, T: Copy + PartialEq> RangedStates<I, T> {
 
     /// Helper method for isolation that checks the sanity of the results.
     #[cfg(test)]
-    pub fn sanely_isolated(&self, index: Range<I>, default: T) -> alloc::vec::Vec<(Range<I>, T)> {
+    pub fn sanely_isolated(&self, index: Range<I>, default: T) -> ::alloc::vec::Vec<(Range<I>, T)> {
         let mut clone = self.clone();
         let result = clone.isolate(&index, default).to_vec();
         clone.check_sanity();
