@@ -161,7 +161,7 @@ impl Queries {
         self.destination_buffer
             .slice(..)
             .map_async(wgpu::MapMode::Read, |_| ());
-        device.poll(wgpu::PollType::wait()).unwrap();
+        device.poll(wgpu::PollType::wait_indefinitely()).unwrap();
 
         let timestamps = {
             let timestamp_view = self
@@ -210,6 +210,7 @@ async fn run() {
             label: None,
             required_features: features,
             required_limits: wgpu::Limits::downlevel_defaults(),
+            experimental_features: wgpu::ExperimentalFeatures::disabled(),
             memory_hints: wgpu::MemoryHints::MemoryUsage,
             trace: wgpu::Trace::Off,
         })
@@ -426,13 +427,13 @@ pub fn main() {
 }
 
 #[cfg(test)]
-mod tests {
+pub mod tests {
     use wgpu_test::{gpu_test, FailureCase, GpuTestConfiguration};
 
     use super::{submit_render_and_compute_pass_with_queries, QueryResults};
 
     #[gpu_test]
-    static TIMESTAMPS_PASS_BOUNDARIES: GpuTestConfiguration = GpuTestConfiguration::new()
+    pub static TIMESTAMPS_PASS_BOUNDARIES: GpuTestConfiguration = GpuTestConfiguration::new()
         .parameters(
             wgpu_test::TestParameters::default()
                 .limits(wgpu::Limits::downlevel_defaults())
@@ -441,7 +442,7 @@ mod tests {
         .run_sync(|ctx| test_timestamps(ctx, false, false));
 
     #[gpu_test]
-    static TIMESTAMPS_ENCODER: GpuTestConfiguration = GpuTestConfiguration::new()
+    pub static TIMESTAMPS_ENCODER: GpuTestConfiguration = GpuTestConfiguration::new()
         .parameters(
             wgpu_test::TestParameters::default()
                 .limits(wgpu::Limits::downlevel_defaults())
@@ -455,7 +456,7 @@ mod tests {
         .run_sync(|ctx| test_timestamps(ctx, true, false));
 
     #[gpu_test]
-    static TIMESTAMPS_PASSES: GpuTestConfiguration = GpuTestConfiguration::new()
+    pub static TIMESTAMPS_PASSES: GpuTestConfiguration = GpuTestConfiguration::new()
         .parameters(
             wgpu_test::TestParameters::default()
                 .limits(wgpu::Limits::downlevel_defaults())

@@ -6,6 +6,10 @@ use wgpu::util::{BufferInitDescriptor, DeviceExt};
 
 use wgpu_test::{gpu_test, FailureCase, GpuTestConfiguration, TestParameters, TestingContext};
 
+pub fn all_tests(vec: &mut Vec<wgpu_test::GpuTestInitializer>) {
+    vec.extend([VERTEX_FORMATS_ALL, VERTEX_FORMATS_10_10_10_2]);
+}
+
 #[derive(Debug, Copy, Clone)]
 enum TestCase {
     UnormsAndSnorms,
@@ -377,11 +381,15 @@ async fn vertex_formats_common(ctx: TestingContext, tests: &[Test<'_>]) {
         // See https://github.com/gfx-rs/wgpu/issues/4732 for why this is split between two submissions
         // with a hard wait in between.
         ctx.queue.submit([encoder1.finish()]);
-        ctx.async_poll(wgpu::PollType::wait()).await.unwrap();
+        ctx.async_poll(wgpu::PollType::wait_indefinitely())
+            .await
+            .unwrap();
         ctx.queue.submit([encoder2.finish()]);
         let slice = cpu_buffer.slice(..);
         slice.map_async(wgpu::MapMode::Read, |_| ());
-        ctx.async_poll(wgpu::PollType::wait()).await.unwrap();
+        ctx.async_poll(wgpu::PollType::wait_indefinitely())
+            .await
+            .unwrap();
         let data: Vec<f32> = bytemuck::cast_slice(&slice.get_mapped_range()).to_vec();
 
         let case_name = format!("Case {:?}", test.case);
